@@ -25,8 +25,6 @@ import static lombok.AccessLevel.PROTECTED;
 @ToString(callSuper = true)
 public class Member extends BaseEntity {
 
-    private int registerCount;
-
     @Column(unique = true, length = 100)
     private String username;
 
@@ -42,10 +40,6 @@ public class Member extends BaseEntity {
     private String profileImgUrl;
 
     private int flightCount;
-
-    private int dailyAchievement;
-
-    private String uuid;
 
 
     public String getProfileImgUrlOrDefault() {
