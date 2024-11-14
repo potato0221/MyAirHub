@@ -8,6 +8,7 @@ import com.ll.myairhub.global.security.SecurityUser;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.lang.NonNull;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,6 +40,8 @@ public class MemberService {
 
         Member member = Member.builder()
                 .username(username)
+                .nickname(nickname)
+                .profileImgUrl(profileImgUrl)
                 .password(passwordEncoder.encode(password))
                 .refreshToken(authTokenService.genRefreshToken())
                 .build();
@@ -85,14 +88,14 @@ public class MemberService {
         return join(username, "");
     }
 
-
-    @AllArgsConstructor
-    @Getter
-    public static class AuthAndMakeTokensResponseBody {
-        private Member member;
-        private String accessToken;
-        private String refreshToken;
-    }
+    public record AuthAndMakeTokensResponseBody(
+            @NonNull
+            Member member,
+            @NonNull
+            String accessToken,
+            @NonNull
+            String refreshToken
+    ) {}
 
     @Transactional
     public RsData<AuthAndMakeTokensResponseBody> authAndMakeTokens(String username, String password) {
