@@ -1,12 +1,12 @@
 package com.ll.myairhub.domain.member.member.service;
 
+import com.ll.myairhub.domain.member.member.dto.NicknameDto;
 import com.ll.myairhub.domain.member.member.entity.Member;
 import com.ll.myairhub.domain.member.member.repository.MemberRepository;
 import com.ll.myairhub.global.exceptions.GlobalException;
+import com.ll.myairhub.global.rq.Rq;
 import com.ll.myairhub.global.rsData.RsData;
 import com.ll.myairhub.global.security.SecurityUser;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.lang.NonNull;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,6 +26,7 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthTokenService authTokenService;
+    private final Rq rq;
 
     @Transactional
     public RsData<Member> join(String username, String password) {
@@ -60,12 +61,11 @@ public class MemberService {
             );
         }
 
-        return modify(member, nickname, profileImgUrl);
+        return modify(member, profileImgUrl);
     }
 
     @Transactional
-    public RsData<Member> modify(Member member, String nickname, String profileImgUrl) {
-        member.setNickname(nickname);
+    public RsData<Member> modify(Member member, String profileImgUrl) {
         member.setProfileImgUrl(profileImgUrl);
 
         return RsData.of("200-2","회원정보가 수정되었습니다.".formatted(member.getUsername()), member);
@@ -86,6 +86,15 @@ public class MemberService {
         if (opMember.isPresent()) return RsData.of("200", "이미 존재합니다.", opMember.get());
 
         return join(username, "");
+    }
+
+    @Transactional
+    public Member modifyNickname(NicknameDto nicknameDto) {
+        Member member = rq.getMember();
+
+        member.setNickname(nicknameDto.getNickname());
+
+        return memberRepository.save(member);
     }
 
     public record AuthAndMakeTokensResponseBody(

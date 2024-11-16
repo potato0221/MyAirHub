@@ -1,6 +1,8 @@
 package com.ll.myairhub.domain.member.member.controller;
 
 import com.ll.myairhub.domain.member.member.dto.MemberDto;
+import com.ll.myairhub.domain.member.member.dto.NicknameDto;
+import com.ll.myairhub.domain.member.member.entity.Member;
 import com.ll.myairhub.domain.member.member.service.MemberService;
 import com.ll.myairhub.global.msg.Msg;
 import com.ll.myairhub.global.rq.Rq;
@@ -65,5 +67,18 @@ public class ApiV1MemberController {
 
         return RsData.of(Msg.E200_6_LOGOUT_SUCCEED.getCode(),
                 Msg.E200_6_LOGOUT_SUCCEED.getMsg());
+    }
+
+    @PutMapping("/modifyNickName")
+    @Operation(summary = "닉네임 변경")
+    public RsData<NicknameDto> modifyNickName(@RequestBody NicknameDto nicknameDto){
+
+        Member member = memberService.modifyNickname(nicknameDto);
+
+        NicknameDto modifyNickNameDto = new NicknameDto(member.getNickname());
+
+        return RsData.of(Msg.E200_2_MODIFY_SUCCEED.getCode(),
+                Msg.E200_2_MODIFY_SUCCEED.getMsg(),
+                modifyNickNameDto);
     }
 }
