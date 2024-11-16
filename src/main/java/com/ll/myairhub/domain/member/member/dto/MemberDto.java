@@ -1,7 +1,6 @@
 package com.ll.myairhub.domain.member.member.dto;
 
 import com.ll.myairhub.domain.member.member.entity.Member;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
