@@ -26,7 +26,7 @@
 	<div class="flex-1">
 		<div class="flex-none">
 			<div class="dropdown">
-				<div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+				<div tabindex="0" role="button" class="btn btn-circle btn-ghost">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						class="h-5 w-5"
@@ -43,7 +43,7 @@
 				</div>
 				<ul
 					tabindex="0"
-					class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+					class="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
 				>
 					{#if rq.isAdmin()}
 						<li>
@@ -187,7 +187,7 @@
 				<a href="/adm">
 					<div class="flex items-center justify-center">
 						<div class="flex h-9 w-9 items-center justify-center text-xl">
-							<i class="fa-regular fa-circle-user ml-1 text-3xl"></i>
+							<i class="fa-regular fa-circle-user text-3xl"></i>
 						</div>
 					</div>
 					<p>관리자</p>

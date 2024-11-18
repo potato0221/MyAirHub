@@ -4,8 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 
@@ -14,9 +16,17 @@ public class AppConfig {
     @Getter
     public static String jwtSecretKey;
 
+    @Getter
+    public static String openApiKey;
+
     @Value("${custom.jwt.secretKey}")
     public void setJwtSecretKey(String jwtSecretKey) {
         this.jwtSecretKey = jwtSecretKey;
+    }
+
+    @Value("${custom.api.key}")
+    public void setOpenApiKey(String openApiKey) {
+        this.openApiKey = openApiKey;
     }
 
     private static String activeProfile;
@@ -111,4 +121,9 @@ public class AppConfig {
 
     @Getter
     public static int basePageSize = 10;
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 }
