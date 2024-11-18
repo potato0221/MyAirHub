@@ -77,8 +77,6 @@ custom:
     dirPath: c:/temp/mah_dev/temp
   genFile:
     dirPath: c:/temp/mah_dev
-
-publicdata:
   api:
-    url: "https://api.odcloud.kr/api"  # 실제 API URL로 교체
-    serviceKey: ON_SECRET
+    key: ON_SECRET
+
