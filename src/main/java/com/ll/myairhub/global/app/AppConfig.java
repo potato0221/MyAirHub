@@ -122,6 +122,12 @@ public class AppConfig {
     @Getter
     public static int basePageSize = 10;
 
+    @Getter
+    public static String csvFilePath = "src/main/resources/csv/airport.csv";
+
+    @Getter
+    public static String outputCsvFilePath = "src/main/resources/csv/myAirport.csv";
+
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();

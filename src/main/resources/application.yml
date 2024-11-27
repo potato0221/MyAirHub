@@ -55,6 +55,7 @@ logging:
     org.hibernate.orm.jdbc.bind: TRACE
     org.hibernate.orm.jdbc.extract: TRACE
     org.springframework.transaction.interceptor: TRACE
+    org.apache.coyote.http11: DEBUG
 custom:
   dev:
     cookieDomain: localhost

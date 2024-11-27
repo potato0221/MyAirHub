@@ -17,9 +17,17 @@ public class Airport extends BaseEntity {
 
     private String region;
 
-    private String airportCode;
+    private String city;
 
-    private String airportName;
+    private String country;
+
+    private String iataCode;
+
+    private String icaoCode;
+
+    private String airportNameKr;
+
+    private String airportNameEng;
 
     //위도
     private double latitude;
